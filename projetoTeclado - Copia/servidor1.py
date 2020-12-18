@@ -4,7 +4,7 @@ from pynput.keyboard import Key, Controller
 keyboard = Controller()
 
 
-meuHost = '192.168.0.147'
+meuHost = 'localhost'
 minhaPort = 50007
 sockobj = socket(AF_INET, SOCK_STREAM)
 sockobj.bind((meuHost, minhaPort))
@@ -20,7 +20,7 @@ while ativo:
         data = conexão.recv(1024)
         if data.decode() == "":
             break
-        #print("recebido:", data.decode( ))
+        print("recebido:", data.decode( ))
         #código para executar o que foi enviado
         #keyboard.press(data.decode())
         #keyboard.release(data.decode())

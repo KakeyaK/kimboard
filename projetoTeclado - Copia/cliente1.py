@@ -1,7 +1,7 @@
 from socket import *
 from pynput import keyboard
 
-serverHost = "192.168.0.148"
+serverHost = "localhost"
 serverPort = 50007
 sockobj = socket(AF_INET, SOCK_STREAM)
 sockobj.connect((serverHost, serverPort))
