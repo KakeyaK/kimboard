@@ -4,12 +4,12 @@
 # criar controle de mouse sem gui
 #     -detectar tamanho da tela - ok
 #     -detectar quando o mouse encostar na borda da tela - ok
-    # -passar informações do mouse pelo client
-    # -receber informações do mouse no server e mover conforme necessário
+    # -passar informações do mouse pelo client - ok
+    # -receber informações do mouse no server e mover conforme necessário -ok
     # -configurar mouse para trocar quando enconstar na borda
 
 # criar teclas de comando para o teclado
-# aprender a parar o mouse e teclado locais
+# aprender a parar o mouse e teclado locais - ok
 
 # tratar informações do cli
 
@@ -29,7 +29,7 @@
 import json
 import argparse
 from socket import *  #converter isso daqui pro outro método depois acho que é melhor
-from pynput.keyboard import Key, Controller
+from pynput import *
 
 #argparser
 # parser0 = argparse.ArgumentParser(description="Control mouse & keyboard remotely")
@@ -69,8 +69,13 @@ from pynput.keyboard import Key, Controller
 #                      help='Reacts to the position of the server monitor when changing mouse from devices')
 
 #keyboard
-keyboard = Controller()
+keyboard = keyboard.Controller()
 tecla_anterior = ""
+
+#mouse
+mouse = mouse.Controller()
+mousex_anterior = 0
+mousey_anterior = 0
 
 #socket
 meuHost = ''
@@ -90,16 +95,42 @@ while True:
     if data == "":
         break
     
-    # read_data = json.loads(data)
+    read_data = json.loads(data)
 
-    # #recebendo dados do teclado
-    # if read_data['id'] == 1:
-    #     if read_data['']
+    #recebendo dados do teclado
+    if read_data['id'] == 1:
+        if read_data['pressed']:
+            exec("keyboard.press(" + read_data['key'] +")")
+        else:
+            exec("keyboard.release(" + read_data['key'] +")")
         
-    # #recebendo dados do mouse
-    # if read_data['id'] == 2:
+    #recebendo dados do mouse
+    if read_data['id'] > 1:
+
+        #movimento do mouse
+        if read_data['id'] == 2:
+
+            #cuidado com possível erro por alcançar limites da tela
+            mouse.move(read_data['positionx'] - mousex_anterior, read_data['positiony' - mousey_anterior])
+
+            mousex_anterior = read_data['positionx']
+            mousey_anterior = read_data['positiony']
+
+        #scroll do mouse
+        if read_data['id'] == 3:
+
+            #verificar necessidade de gerar excessão
+            mouse.scroll(read_data['scrollx'], read_data['scrolly'])
+
+        #click do mouse
+        if read_data['id'] == 4:
+
+            if read_data['pressed']:
+                exec("mouse.press(" + read_data["click_button"] + ")")
+            else:
+                exec("mouse.release(" + read_data["click_button"] + ")")
         
-    print("recebido:", data)
+    # print("recebido:", data)
 
 
     # if tecla != tecla_anterior:

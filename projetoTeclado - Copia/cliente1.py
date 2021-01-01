@@ -48,6 +48,12 @@ keyboard_l = keyboard.Listener(
 
 def mouse_on_move(x, y):
     global current_mouse
+
+    current_mouse['id'] = 2
+    
+    current_mouse['scrollx'] = 0
+    current_mouse['scrolly'] = 0
+    
     current_mouse['positionx'] = x
     current_mouse['positiony'] = y
     
@@ -57,7 +63,10 @@ def mouse_on_move(x, y):
     sockobj.send(json.dumps(current_mouse).encode())
 
 def mouse_on_scroll(x, y , dx, dy):
-    global current_key
+    global current_mouse
+
+    current_mouse['id'] = 3
+
     current_mouse['scrollx'] = dx
     current_mouse['scrolly'] = dy
 
@@ -68,7 +77,12 @@ def mouse_on_scroll(x, y , dx, dy):
 
 def mouse_on_click(x, y, button, pressed):
     global current_mouse
+
+    current_mouse['id'] = 4
     
+    current_mouse['scrollx'] = 0
+    current_mouse['scrolly'] = 0
+
     current_mouse['click_button'] = str(button)
     current_mouse['pressed'] = pressed
 
