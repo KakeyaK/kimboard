@@ -97,40 +97,40 @@ while True:
     
     read_data = json.loads(data)
 
-    #recebendo dados do teclado
-    if read_data['id'] == 1:
-        if read_data['pressed']:
-            exec("keyboard.press(" + read_data['key'] +")")
-        else:
-            exec("keyboard.release(" + read_data['key'] +")")
+    # #recebendo dados do teclado
+    # if read_data['id'] == 1:
+    #     if read_data['pressed']:
+    #         exec("keyboard.press(" + read_data['key'] +")")
+    #     else:
+    #         exec("keyboard.release(" + read_data['key'] +")")
         
-    #recebendo dados do mouse
-    if read_data['id'] > 1:
+    # #recebendo dados do mouse
+    # if read_data['id'] > 1:
 
-        #movimento do mouse
-        if read_data['id'] == 2:
+    #     #movimento do mouse
+    #     if read_data['id'] == 2:
 
-            #cuidado com possível erro por alcançar limites da tela
-            mouse.move(read_data['positionx'] - mousex_anterior, read_data['positiony' - mousey_anterior])
+    #         #cuidado com possível erro por alcançar limites da tela
+    #         mouse.move(read_data['positionx'] - mousex_anterior, read_data['positiony' - mousey_anterior])
 
-            mousex_anterior = read_data['positionx']
-            mousey_anterior = read_data['positiony']
+    #         mousex_anterior = read_data['positionx']
+    #         mousey_anterior = read_data['positiony']
 
-        #scroll do mouse
-        if read_data['id'] == 3:
+    #     #scroll do mouse
+    #     if read_data['id'] == 3:
 
-            #verificar necessidade de gerar excessão
-            mouse.scroll(read_data['scrollx'], read_data['scrolly'])
+    #         #verificar necessidade de gerar excessão
+    #         mouse.scroll(read_data['scrollx'], read_data['scrolly'])
 
-        #click do mouse
-        if read_data['id'] == 4:
+    #     #click do mouse
+    #     if read_data['id'] == 4:
 
-            if read_data['pressed']:
-                exec("mouse.press(" + read_data["click_button"] + ")")
-            else:
-                exec("mouse.release(" + read_data["click_button"] + ")")
+    #         if read_data['pressed']:
+    #             exec("mouse.press(" + read_data["click_button"] + ")")
+    #         else:
+    #             exec("mouse.release(" + read_data["click_button"] + ")")
         
-    # print("recebido:", data)
+    print("recebido:", data)
 
 
     # if tecla != tecla_anterior:
