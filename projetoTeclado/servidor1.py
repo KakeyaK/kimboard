@@ -104,6 +104,7 @@ while True:
 
 
     print(data)
+    print("\n data: ")
     
     # read_data = json.loads(str(data))
 
