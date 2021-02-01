@@ -95,16 +95,17 @@ while True:
     if data == "":
         break
 
-    data = data.split("}")
+    # data = data.split("}")
+    # data.pop()
 
-    for i in range(len(data)):
-        data[i] += "}"
+    # for i in range(len(data)):
+    #     data[i] += "}"
+    #     data[i] = json.load(data[i])
 
-    data.pop()
 
+    print(data)
     
-    
-    read_data = json.loads(str(data))
+    # read_data = json.loads(str(data))
 
     # #recebendo dados do teclado
     # if read_data['id'] == 1:
@@ -139,8 +140,6 @@ while True:
     #         else:
     #             exec("mouse.release(" + read_data["click_button"] + ")")
         
-    print("recebido:", data)
-
 
     # if tecla != tecla_anterior:
         #código para executar o que foi enviado
