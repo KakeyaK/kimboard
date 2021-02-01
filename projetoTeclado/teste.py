@@ -121,51 +121,63 @@
 #     listener.join()
 
 
-import argparse
+# import argparse
 
 #argparser
-parser0 = argparse.ArgumentParser(description="Control mouse & keyboard remotely")
-parser0.version = "k1.0"
+# parser0 = argparse.ArgumentParser(description="Control mouse & keyboard remotely")
+# parser0.version = "k1.0"
 
-#positional arguments
-parser0.add_argument('concetion_iP',
-                     metavar='Ip',
-                     type=str,
-                     default='',
-                     help='Concetion IP if running the server leave it blank ("")')
-parser0.add_argument('conection_port',
-                     metavar='Port',
-                     type=str,
-                     help='Conection Port')
+# #positional arguments
+# parser0.add_argument('concetion_iP',
+#                      metavar='Ip',
+#                      type=str,
+#                      default='',
+#                      help='Concetion IP if running the server leave it blank ("")')
+# parser0.add_argument('conection_port',
+#                      metavar='Port',
+#                      type=str,
+#                      help='Conection Port')
 
-#optional arguments
-parser0.add_argument('-s',
-                     '--server',
-                    #  metavar='server',
-                     action='store_true',
-                     help='Runs the program in the server mode')
-parser0.add_argument('-k',
-                     '--keyboard',
-                    #  metavar='use_keyboard',
-                     action='store_true',
-                     help='Control Keyboard')
-parser0.add_argument('-m',
-                     '--mouse',
-                    #  metavar='use_mouse',
-                     action='store_true',
-                     help='Control Mouse')
-parser0.add_argument('-l',
-                     '--local',
-                    #  metavar='use_local',
-                     action='store_true',
-                     help='Enable input device in both controled and local machines')
+# #optional arguments
+# parser0.add_argument('-s',
+#                      '--server',
+#                     #  metavar='server',
+#                      action='store_true',
+#                      help='Runs the program in the server mode')
+# parser0.add_argument('-k',
+#                      '--keyboard',
+#                     #  metavar='use_keyboard',
+#                      action='store_true',
+#                      help='Control Keyboard')
+# parser0.add_argument('-m',
+#                      '--mouse',
+#                     #  metavar='use_mouse',
+#                      action='store_true',
+#                      help='Control Mouse')
+# parser0.add_argument('-l',
+#                      '--local',
+#                     #  metavar='use_local',
+#                      action='store_true',
+#                      help='Enable input device in both controled and local machines')
 
-parser0.add_argument('-r', 
-                     '--reacts_to_monitor',
-                    #  metavar='react_to_monitor',
-                     action='store',
-                     help='Reacts to the position of the server monitor to change input from devices [T/R/B/L]')
+# parser0.add_argument('-r', 
+#                      '--reacts_to_monitor',
+#                     #  metavar='react_to_monitor',
+#                      action='store',
+#                      help='Reacts to the position of the server monitor to change input from devices [T/R/B/L]')
 
-args = parser0.parse_args()
+# args = parser0.parse_args()
 
-print(args.conection_port)
+# print(args.conection_port)
+
+
+x = "{welcome}{to the}{jungle}"
+
+
+x = x.split("}")
+
+for i in range(len(x)):
+    x[i] += "}"
+    print(x[i])
+x.pop()
+print(x)

@@ -94,8 +94,17 @@ while True:
     data = conexão.recv(2048).decode()
     if data == "":
         break
+
+    data = data.split("}")
+
+    for i in range(len(data)):
+        data[i] += "}"
+
+    data.pop()
+
     
-    read_data = json.loads(data)
+    
+    read_data = json.loads(str(data))
 
     # #recebendo dados do teclado
     # if read_data['id'] == 1:
