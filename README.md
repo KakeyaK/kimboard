@@ -4,4 +4,4 @@ Python app to utilize one computer as input interface to another. Possibility to
 
 Currently only in CLI version. 
 
-All sugestions are welcome.
+All sugestions are welcome =)
