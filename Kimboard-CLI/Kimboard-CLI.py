@@ -205,35 +205,45 @@ class Client:
         self.paused = not self.paused
 
         if self.paused:
-            # Sending release commands to prevent from bugs
-            self.current_key['id'] = 1.1
-            self.current_key['key'] = '1'
-            self.current_key['pressed'] = False
-            self.Socket_obj.send(json.dumps(self.current_key).encode())
-            self.current_key['id'] = 1.2
-            self.current_key['key'] = 'Key.ctrl_l'
-            self.Socket_obj.send(json.dumps(self.current_key).encode())
-            self.current_key['key'] = 'Key.ctrl_r'
-            self.Socket_obj.send(json.dumps(self.current_key).encode())
-            self.current_key['key'] = 'Key.shift'
-            self.Socket_obj.send(json.dumps(self.current_key).encode())
 
-            # Stop suppress
-            self.mouse_listener._suppress = False
-            self.keyboard_listener._suppress = False
+
+            if self.keyboard_on:
+                # Sending release commands to prevent from bugs
+                self.current_key['id'] = 1.1
+                self.current_key['key'] = '1'
+                self.current_key['pressed'] = False
+                self.Socket_obj.send(json.dumps(self.current_key).encode())
+                self.current_key['id'] = 1.2
+                self.current_key['key'] = 'Key.ctrl_l'
+                self.Socket_obj.send(json.dumps(self.current_key).encode())
+                self.current_key['key'] = 'Key.ctrl_r'
+                self.Socket_obj.send(json.dumps(self.current_key).encode())
+                self.current_key['key'] = 'Key.shift'
+                self.Socket_obj.send(json.dumps(self.current_key).encode())
+
+                self.keyboard_listener._suppress = False
+            
+            if self.mouse_on:
+                self.mouse_listener._suppress = False
         else:
-            # Sending release commands to prevent from bugs
-            self.keyboard.release('1')
-            self.keyboard.release(pynput.keyboard.Key.ctrl_l)
-            self.keyboard.release(pynput.keyboard.Key.ctrl_r)
-            self.keyboard.release(pynput.keyboard.Key.shift)
+            if self.keyboard_on:
+                # Sending release commands to prevent from bugs
+                self.keyboard.release('1')
+                self.keyboard.release(pynput.keyboard.Key.ctrl_l)
+                self.keyboard.release(pynput.keyboard.Key.ctrl_r)
+                self.keyboard.release(pynput.keyboard.Key.shift)
 
-            # Restoring previous mouse position after retourning to suppress mode
-            self.previousX, self.previousY = self.mouse.position
+            
+            if self.mouse_on:
+                # Restoring previous mouse position after retourning to suppress mode
+                self.previousX, self.previousY = self.mouse.position
 
-            # Activate suppress depending on user options
-            self.mouse_listener._suppress = not self.local_on
-            self.keyboard_listener._suppress = not self.local_on
+                # Activate suppress depending on user options
+                self.mouse_listener._suppress = not self.local_on
+            
+            if self.keyboard_on:
+                # Activate suppress depending on user options
+                self.keyboard_listener._suppress = not self.local_on
 
 #=== Server Class ===#
 class Server:
